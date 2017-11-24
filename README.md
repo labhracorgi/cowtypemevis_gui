@@ -28,7 +28,7 @@ To make available "tools" and code used to manually classify Circle of Willis co
 Overall project folder with:
 - Code/***GUIscripts***
 - Images/***ID***/tof_mra.nii
-- GUI_other/csv|cache/csv_file.csv
+- GUI_other/***csv|cache***/csv_file.csv
 
 ## How to setup:
 1. Start MeVisLab
