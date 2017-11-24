@@ -19,3 +19,6 @@ This folder should contain:
 	- (Functional) / to_krabbehartkamp1998_parser_new.py / A Python script to convert
 		raw binary arrays to a format which is compatible with the classification
 		used by Krabbe-Hartkamp 1998.
+	- (Functional) / R_code_read_csv.R / An R script which just shows exactly how the final csv 
+		created by the other scripts can be loaded into R without loss of information. 
+		Since I personally believe R to be greater for statistical calculations.
