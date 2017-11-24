@@ -26,9 +26,9 @@ To make available "tools" and code used to manually classify Circle of Willis co
 
 ## "Recommended" File Structure:
 Overall project folder with:
-- Code folder
-- Images folder sorted by ID folders
-- Folder with progress cache and collected/translated csv files.
+- Code/***GUIscripts***
+- Images/***ID***/tof_mra.nii
+- GUI_other/csv|cache/csv_file.csv
 
 ## How to setup:
 1. Start MeVisLab
