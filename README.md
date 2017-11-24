@@ -1,9 +1,15 @@
 # Circle of Willis Type selector - MeVisLab GUI:
 
+## OS it worked on:
+- macOS Sierra
+
 ## Software and version used:
-Python Version 2.7.13 - Anaconda2 build
-MeVisLab Version 3.0.1 (2017-08-20 Release)
-R Version 3.4.2
+- Python Version 2.7.13 - Anaconda2 build
+- MeVisLab Version 3.0.1 (2017-08-20 Release)
+- R Version 3.4.2
+
+## Hardware limitations:
+- Depending on the size of your images, mostly RAM.
 
 ## Remember to:
 - Set the correct paths; see File Structure.
