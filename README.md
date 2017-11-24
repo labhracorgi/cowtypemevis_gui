@@ -4,7 +4,7 @@ Intended to be used on:
 - TOF MRA images to determine the type of Circle of Willis.
 - Larger sets of images from 100 up to at least 2000 images.
 
-## OS it worked on:
+## OS it worked/has been tested on:
 - macOS Sierra
 
 ## Software and version used:
