@@ -14,6 +14,7 @@ Intended to be used on:
 
 ## Hardware limitations:
 - Depending on the size of your images, mostly RAM.
+- GPU due to 3D rendering of images.
 
 ## Remember to:
 - Set the correct paths; see File Structure.
