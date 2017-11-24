@@ -6,7 +6,7 @@ Intended to be used on:
 - When only configuration combinations of binary artery categories are necessary of the following arteries: ACA, ACoA, MCA, ICA, PCoA, PCA and VBA. A mirrrored configuration will be its own configuration.
 
 ### Motivation for this repository:
-To make available tools and code used to manually classify Circle of Willis configurations for a large amount of images. Especially with regards to Horikoshi (2002) and Krabbe-Hartkamp (1998) notation, and another "new" way of presenting slightly more complex configuration.
+To make available "tools" and code used to manually classify Circle of Willis configurations for a large amount of images. Especially with regards to Horikoshi (2002) and Krabbe-Hartkamp (1998) notation, and another "new" notation of presenting slightly more complex configurations.
 
 ## OS it worked/has been tested on:
 - macOS Sierra
