@@ -2,7 +2,11 @@
 
 Intended to be used on:
 - TOF MRA images to determine the type of Circle of Willis.
-- Larger sets of images from 100 up to at least 2000 images.
+- Larger sets of images from for example 100 images up to at least 2000 images.
+- When only configuration combinations of binary artery categories are necessary of the following arteries: ACA, ACoA, MCA, ICA, PCoA, PCA and VBA. A mirrrored configuration will be its own configuration.
+
+### Motivation for this repository:
+To make available tools and code used to manually classify Circle of Willis configurations for a large amount of images. Especially with regards to Horikoshi (2002) and Krabbe-Hartkamp (1998) notation, and another "new" way of presenting slightly more complex configuration.
 
 ## OS it worked/has been tested on:
 - macOS Sierra
@@ -13,12 +17,12 @@ Intended to be used on:
 - R Version 3.4.2
 
 ## Hardware limitations:
-- Depending on the size of your images, mostly RAM.
-- GPU due to 3D rendering of images.
+- RAM, depending on the size of your images.
+- GPU, due to 3D rendering of images.
 
 ## Remember to:
 - Set the correct paths; see File Structure.
-- Nothing else should not need to be tampered with to work.
+- Nothing else than these paths should need to be tampered with for the code to work.
 
 ## "Recommended" File Structure:
 Overall project folder with:
@@ -34,4 +38,4 @@ Overall project folder with:
 5. Translate the results to something more easily manageable (also csv format) by using one of the parsers.
 
 ### Remarks:
-The GUI might be a little buggy regarding its buttons in the View3D module in MeVisLab. Suspect that the issue arose from zooming, but no workaround has been tempted. The buttons in the View2D should work. When every image has been typeset, then an error will show that there is no more images. Lastly, the GUI should remember old types (if you haven't deleted the individual csv files) and remember which image you were trying to typeset through the cache. The cache can be manually changed as well as the other csv files.
+The GUI might be a little buggy regarding its buttons in the View3D module in MeVisLab. Suspect that the issue arose from zooming, but no workaround has been tempted, yet. The buttons in the View2D should still work. When every image has been typeset, then an error will show that there is no more images. Lastly, the GUI should remember old types (if you haven't deleted the individual csv files) and remember which image you were trying to typeset through the cache. The cache can be manually changed as well as the other csv files.
