@@ -11,12 +11,12 @@ To make available "tools" and code used to manually classify Circle of Willis co
 ## OS it worked/has been tested on:
 - macOS Sierra
 
-## Software and version used:
+### Software and version used:
 - Python Version 2.7.13 - Anaconda2 build
 - MeVisLab Version 3.0.1 (2017-08-20 Release)
 - R Version 3.4.2
 
-## Hardware limitations:
+### Hardware limitations:
 - RAM, depending on the size of your images.
 - GPU, due to 3D rendering of images.
 
@@ -24,7 +24,7 @@ To make available "tools" and code used to manually classify Circle of Willis co
 - Set the correct paths; see File Structure.
 - Nothing else than these paths should need to be tampered with for the code to work.
 
-## "Recommended" File Structure:
+### "Recommended" File Structure:
 Overall project folder with:
 - Code/***GUIscripts***
 - Images/***ID***/tof_mra.nii
