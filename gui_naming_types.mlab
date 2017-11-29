@@ -4,11 +4,11 @@ network  {
 }
 module RunPythonScript {
   internal  {
-    frame = "841 229 128 56"
+    frame = "969 229 128 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1107 217 813 979"
+        geometry = "690 221 813 979"
         sizeHint = "813 798"
         wasOpen = no
       }
@@ -918,18 +918,18 @@ intent_p3 : 0
 pixdim[0] : 1
 pixdim[1] : 0.260417
 pixdim[2] : 0.260417
-pixdim[3] : 0.5
+pixdim[3] : 0.500001
 pixdim[4] : 0.021
 pixdim[5] : 0
 pixdim[6] : 0
 pixdim[7] : 0
 qform_code : 1
-qoffset_x : -94.2401
-qoffset_y : -102.44
-qoffset_z : -101.346
-quatern_b : 0.103336
-quatern_c : 0.000971558
-quatern_d : -0.0184981
+qoffset_x : -95.0888
+qoffset_y : -99.0048
+qoffset_z : -91.9299
+quatern_b : 0.152945
+quatern_c : 0.0189956
+quatern_d : 0.00364649
 scl_inter : 0
 scl_slope : 1
 sform_code : 1
@@ -937,16 +937,16 @@ slice_code :
 slice_duration : 0
 slice_end : 0
 slice_start : 0
-srow_x : 0.260238 0.00963345 -0.000945335 -94.2401
-srow_y : -0.00952888 0.254677 -0.102783 -102.44
-srow_z : -0.00149881 0.0535143 0.48932 -101.346
+srow_x : 0.260222 -0.000363338 0.0193263 -95.0888
+srow_y : 0.00338968 0.248226 -0.151048 -99.0048
+srow_z : -0.00948479 0.0787428 0.476248 -91.9299
 toffset : 0
 vox_offset : 352
 xyzt_units : 
 
 "
     suppressErrorPosting = FALSE
-    unresolvedFileName = /Volumes/LaCie/to_be_traced/photometry/102729/3D_TOF/tof_crop.nii.gz
+    unresolvedFileName = /Volumes/LaCie/to_be_traced/photometry/101600/3D_TOF/tof_crop.nii.gz
   }
 }
 module SoGroup {
@@ -1070,11 +1070,11 @@ module SoView2DMenu {
 }
 module View2D {
   internal  {
-    frame = "661 189 120 56"
+    frame = "661 165 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "2 45 807 680"
+        geometry = "254 109 1252 1012"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -1090,7 +1090,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 0
+    startSlice = 107
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -1115,8 +1115,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 490
-    lutWidth = 789
+    lutCenter = 307.449951171875
+    lutWidth = 806.199645996094
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -1330,11 +1330,11 @@ module SoView2DMenuItem {
 }
 module View3D {
   internal  {
-    frame = "505 189 144 56"
+    frame = "505 165 144 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "48 45 1823 1151"
+        geometry = "20 201 1037 813"
         sizeHint = "1046 664"
         wasOpen = no
       }
@@ -1359,17 +1359,17 @@ module View3D {
     orientationLocation = LOWER_RIGHT
     orientationOn = TRUE
     orientationModel = CUBE
-    greyCenter = 0.345001757144928
-    greyWidth = 0.169999957084656
+    greyCenter = 0.250001758337021
+    greyWidth = 0.0649999529123306
     alphaFactor = 1
     colorFactor = "1 1 1"
     camType = TRUE
-    camPosition = "11.7499580383301 93.9633636474609 75.7406616210938"
-    camOrientation = "-0.0267126299440861 -0.315129488706589 -0.948672711849213 3.27742767333984"
+    camPosition = "-3.71116781234741 63.2005767822266 34.8850631713867"
+    camOrientation = "-0.0156713556498289 -0.382411807775497 -0.923859059810638 2.80432152748108"
     initialCameraOrientation = CAMERA_KEEP_AS_IS
-    camFar = 226.89937
-    camNear = 23.770647
-    camFocal = 125.23362
+    camFar = 164.78107
+    camNear = 0.16445185
+    camFocal = 62.399891
     camHeight = 0.78539801
     decoration = FALSE
     hiResRendering = TRUE
@@ -1447,13 +1447,37 @@ module View3D {
     clip.rotation5 = "0.999999940395355 0 0 1.57079994678497"
   }
 }
+module MeasureVesselDiameter {
+  internal  {
+    frame = "785 229 176 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1507 563 410 592"
+        sizeHint = "410 592"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = MeasureVesselDiameter
+    threshold_min = 0
+    threshold_max = 400
+    threshold = 271.20001
+    line = "0 0 0"
+    intensity_profile_interpolation_order = 1
+    intensity_profile_num_points = 1000
+  }
+}
 connections  {
   SoGroup.children = "ICAL.self ICAR.self MCA1L.self MCA1R.self ACA1L.self ACA1R.self AComA.self PComAL.self PComAR.self PCA1L.self PCA1R.self VBA.self SoView2DMenu.self SoView2D1.self"
   SoViewportRegion.children = SoGroup.self
   View2D.inImage = itkImageFileReader.output0
   View2D.inInvPreLUT = SoViewportRegion.self
+  View2D.inInvPostLUT = MeasureVesselDiameter.outNode
   SoView2D1.image = ConstantImage.output0
   View3D.inImage = itkImageFileReader.output0
   View3D.inInvPreLUT = SoViewportRegion.self
+  MeasureVesselDiameter.image = itkImageFileReader.output0
 }
 networkModel = ""
