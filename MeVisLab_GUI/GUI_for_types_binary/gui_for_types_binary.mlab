@@ -4,13 +4,13 @@ network  {
 }
 module RunPythonScript {
   internal  {
-    frame = "793 141 128 56"
+    frame = "969 229 128 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "2889 49 904 1031"
+        geometry = "2948 101 813 979"
         sizeHint = "813 798"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -114,19 +114,6 @@ CTX.field("PComAR.isSelected").value = False
 CTX.field("PCA1L.isSelected").value = False
 CTX.field("PCA1R.isSelected").value = False
 CTX.field("VBA.isSelected").value = False
-
-CTX.field("ICALH.isSelected").value = False
-CTX.field("ICARH.isSelected").value = False
-CTX.field("MCA1LH.isSelected").value = False
-CTX.field("MCA1RH.isSelected").value = False
-CTX.field("ACA1LH.isSelected").value = False
-CTX.field("ACA1RH.isSelected").value = False
-CTX.field("AComAH.isSelected").value = False
-CTX.field("PComALH.isSelected").value = False
-CTX.field("PComARH.isSelected").value = False
-CTX.field("PCA1LH.isSelected").value = False
-CTX.field("PCA1RH.isSelected").value = False
-CTX.field("VBAH.isSelected").value = False
 #####
 
 #Load first image: (Start)
@@ -152,8 +139,7 @@ CTX.field("itkImageFileReader.unresolvedFileName").value = current_path
 
 #Open new/old file: (Start)
 current_text_path = text_paths[load_counter[0]]
-
-file_path = current_text_path + "/raw_ternary_type.csv"
+file_path = current_text_path + "/raw_type.csv"
 print "And the file path is: " + file_path
 if (os.path.isfile(file_path)):
 	old_type_array = numpy.loadtxt(file_path,delimiter = ",")
@@ -224,86 +210,12 @@ else:
 	old_type_boolean_present = False
 	print "No existing type specifications for this individual, yet."
 
-hypo_path = current_text_path + "/raw_ternary_hypo.csv"
-print "And the hypoplastic path is: " + hypo_path
-if (os.path.isfile(hypo_path)):
-	old_hypo_array = numpy.loadtxt(hypo_path,delimiter = ",")
-	old_hypo_boolean_present = True
-	print "There are hypoplastic specifications for this individual."
-	#####Update buttons:
-	if (old_hypo_array[0] == 1):
-		CTX.field("ICALH.isSelected").value = True
-	else:
-		CTX.field("ICALH.isSelected").value = False
-	
-	if (old_hypo_array[1] == 1):
-		CTX.field("ICARH.isSelected").value = True
-	else:
-		CTX.field("ICARH.isSelected").value = False
-	
-	if (old_hypo_array[2] == 1):
-		CTX.field("MCA1LH.isSelected").value = True
-	else:
-		CTX.field("MCA1LH.isSelected").value = False
-	
-	if (old_hypo_array[3] == 1):
-		CTX.field("MCA1RH.isSelected").value = True
-	else:
-		CTX.field("MCA1RH.isSelected").value = False
-		
-	if (old_hypo_array[4] == 1):
-		CTX.field("ACA1LH.isSelected").value = True
-	else:
-		CTX.field("ACA1LH.isSelected").value = False
-		
-	if (old_hypo_array[5] == 1):
-		CTX.field("ACA1RH.isSelected").value = True
-	else:
-		CTX.field("ACA1RH.isSelected").value = False
-		
-	if (old_hypo_array[6] == 1):
-		CTX.field("AComAH.isSelected").value = True
-	else:
-		CTX.field("AComAH.isSelected").value = False
-	
-	if (old_hypo_array[7] == 1):
-		CTX.field("PComALH.isSelected").value = True
-	else:
-		CTX.field("PComALH.isSelected").value = False
-	
-	if (old_hypo_array[8] == 1):
-		CTX.field("PComARH.isSelected").value = True
-	else:
-		CTX.field("PComARH.isSelected").value = False
-	
-	if (old_hypo_array[9] == 1):
-		CTX.field("PCA1LH.isSelected").value = True
-	else:
-		CTX.field("PCA1LH.isSelected").value = False
-	
-	if (old_hypo_array[10] == 1):
-		CTX.field("PCA1RH.isSelected").value = True
-	else:
-		CTX.field("PCA1RH.isSelected").value = False
-	
-	if (old_hypo_array[11] == 1):
-		CTX.field("VBAH.isSelected").value = True
-	else:
-		CTX.field("VBAH.isSelected").value = False
-	#####
-else:
-	old_hypo_boolean_present = False
-	print "No existing hypoplastic specifications for this individual, yet."
-
 *"
     code = "*
 #Get values from switches: (The order is really important)
 
 new_type_array = numpy.zeros(n_artery_labels)
 new_type_array = new_type_array.astype(int)
-
-new_hypo_array = numpy.zeros(n_artery_labels)
-new_hypo_array = new_hypo_array.astype(int)
 
 #####Get new values:
 if (CTX.field("ICAL.isSelected").value == True):
@@ -366,78 +278,46 @@ if (CTX.field("VBA.isSelected").value == True):
 else:
 	new_type_array[11] = 1
 #####
-#---------------------------------------------------------------------------
-#####Get new (hypoplastic) values:
-if (CTX.field("ICALH.isSelected").value == True):
-	new_hypo_array[0] = 1
-else:
-	new_hypo_array[0] = 0
 
-if (CTX.field("ICARH.isSelected").value == True):
-	new_hypo_array[1] = 1
-else:
-	new_hypo_array[1] = 0
-
-if (CTX.field("MCA1LH.isSelected").value == True):
-	new_hypo_array[2] = 1
-else:
-	new_hypo_array[2] = 0
-
-if (CTX.field("MCA1RH.isSelected").value == True):
-	new_hypo_array[3] = 1
-else:
-	new_hypo_array[3] = 0
-
-if (CTX.field("ACA1LH.isSelected").value == True):
-	new_hypo_array[4] = 1
-else:
-	new_hypo_array[4] = 0
-
-if (CTX.field("ACA1RH.isSelected").value == True):
-	new_hypo_array[5] = 1
-else:
-	new_hypo_array[5] = 0
-
-if (CTX.field("AComAH.isSelected").value == True):
-	new_hypo_array[6] = 1
-else:
-	new_hypo_array[6] = 0
-
-if (CTX.field("PComALH.isSelected").value == True):
-	new_hypo_array[7] = 1
-else:
-	new_hypo_array[7] = 0
-
-if (CTX.field("PComARH.isSelected").value == True):
-	new_hypo_array[8] = 1
-else:
-	new_hypo_array[8] = 0
-
-if (CTX.field("PCA1LH.isSelected").value == True):
-	new_hypo_array[9] = 1
-else:
-	new_hypo_array[9] = 0
-
-if (CTX.field("PCA1RH.isSelected").value == True):
-	new_hypo_array[10] = 1
-else:
-	new_hypo_array[10] = 0
-
-if (CTX.field("VBAH.isSelected").value == True):
-	new_hypo_array[11] = 1
-else:
-	new_hypo_array[11] = 0
-#####
+###This is not necessarily needed as we can "just" overwrite each time.
+#Test if old array equals new array:
+#if old_type_boolean_present:
+#	if (numpy.array_equal(new_type_array,old_type_array)):
+#		print "Old type equals new type, continuing..." 
+#		#####Reset buttons:
+#		CTX.field("ICAL.isSelected").value = False
+#		CTX.field("ICAR.isSelected").value = False
+#		CTX.field("MCA1L.isSelected").value = False
+#		CTX.field("MCA1R.isSelected").value = False
+#		CTX.field("ACA1L.isSelected").value = False
+#		CTX.field("ACA1R.isSelected").value = False
+#		CTX.field("AComA.isSelected").value = False
+#		CTX.field("PComAL.isSelected").value = False
+#		CTX.field("PComAR.isSelected").value = False
+#		CTX.field("PCA1L.isSelected").value = False
+#		CTX.field("PCA1R.isSelected").value = False
+#		CTX.field("VBA.isSelected").value = False
+#		#####
+#	
+#		print "="*10
+#		load_counter = load_counter + 1
+#	
+#		if (load_counter >= n_paths):	
+#			sys.exit("There are no more TOF MRA images in the sourced folder...")
+#		
+#		current_path = paths_in[load_counter]
+#		print "Now working on: " + current_path
+#		CTX.field("itkImageFileReader.unresolvedFileName").value = current_path
+#		
+#		###Possibly an error here regarding the older file types......
+#		del(old_type_array)
+#		old_type_boolean_present = False
+#		sys.exit("The previously specified type for this image is equal to the new one. Continuing with next Image.")
 
 #(Over)write to previously opened/loaded file, if it is different or new:
 numpy.savetxt(file_path,new_type_array,delimiter = ",")
 print "="*3
 print "New or newer type array has been (over)written to csv format..."
-
-numpy.savetxt(hypo_path,new_hypo_array,delimiter = ",")
-print "="*3
-print "New or newer hypoplastic array has been (over)written to csv format..."
-
 
 #Load next image:
 print "="*10
@@ -460,19 +340,6 @@ CTX.field("PComAR.isSelected").value = False
 CTX.field("PCA1L.isSelected").value = False
 CTX.field("PCA1R.isSelected").value = False
 CTX.field("VBA.isSelected").value = False
-
-CTX.field("ICALH.isSelected").value = False
-CTX.field("ICARH.isSelected").value = False
-CTX.field("MCA1LH.isSelected").value = False
-CTX.field("MCA1RH.isSelected").value = False
-CTX.field("ACA1LH.isSelected").value = False
-CTX.field("ACA1RH.isSelected").value = False
-CTX.field("AComAH.isSelected").value = False
-CTX.field("PComALH.isSelected").value = False
-CTX.field("PComARH.isSelected").value = False
-CTX.field("PCA1LH.isSelected").value = False
-CTX.field("PCA1RH.isSelected").value = False
-CTX.field("VBAH.isSelected").value = False
 #####
 
 #Cache the "load_counter":
@@ -487,7 +354,7 @@ CTX.field("itkImageFileReader.unresolvedFileName").value = current_path
 
 #Open new/old file:
 current_text_path = text_paths[load_counter[0]]
-file_path = current_text_path + "/raw_ternary_type.csv"
+file_path = current_text_path + "/raw_type.csv"
 print "And the file path is: " + file_path
 if (os.path.isfile(file_path)):
 	old_type_array = numpy.loadtxt(file_path,delimiter = ",")
@@ -558,83 +425,7 @@ else:
 	if old_type_boolean_present:
 		del(old_type_array)
 	old_type_boolean_present = False
-	print "No existing type specifications for this individual, yet."
-
-
-hypo_path = current_text_path + "/raw_ternary_hypo.csv"
-print "And the hypoplastic path is: " + hypo_path
-if (os.path.isfile(hypo_path)):
-	old_hypo_array = numpy.loadtxt(hypo_path,delimiter = ",")
-	old_hypo_boolean_present = True
-	print "There are hypoplastic specifications for this individual."
-	#####Update buttons:
-	if (old_hypo_array[0] == 1):
-		CTX.field("ICALH.isSelected").value = True
-	else:
-		CTX.field("ICALH.isSelected").value = False
-	
-	if (old_hypo_array[1] == 1):
-		CTX.field("ICARH.isSelected").value = True
-	else:
-		CTX.field("ICARH.isSelected").value = False
-	
-	if (old_hypo_array[2] == 1):
-		CTX.field("MCA1LH.isSelected").value = True
-	else:
-		CTX.field("MCA1LH.isSelected").value = False
-	
-	if (old_hypo_array[3] == 1):
-		CTX.field("MCA1RH.isSelected").value = True
-	else:
-		CTX.field("MCA1RH.isSelected").value = False
-		
-	if (old_hypo_array[4] == 1):
-		CTX.field("ACA1LH.isSelected").value = True
-	else:
-		CTX.field("ACA1LH.isSelected").value = False
-		
-	if (old_hypo_array[5] == 1):
-		CTX.field("ACA1RH.isSelected").value = True
-	else:
-		CTX.field("ACA1RH.isSelected").value = False
-		
-	if (old_hypo_array[6] == 1):
-		CTX.field("AComAH.isSelected").value = True
-	else:
-		CTX.field("AComAH.isSelected").value = False
-	
-	if (old_hypo_array[7] == 1):
-		CTX.field("PComALH.isSelected").value = True
-	else:
-		CTX.field("PComALH.isSelected").value = False
-	
-	if (old_hypo_array[8] == 1):
-		CTX.field("PComARH.isSelected").value = True
-	else:
-		CTX.field("PComARH.isSelected").value = False
-	
-	if (old_hypo_array[9] == 1):
-		CTX.field("PCA1LH.isSelected").value = True
-	else:
-		CTX.field("PCA1LH.isSelected").value = False
-	
-	if (old_hypo_array[10] == 1):
-		CTX.field("PCA1RH.isSelected").value = True
-	else:
-		CTX.field("PCA1RH.isSelected").value = False
-	
-	if (old_hypo_array[11] == 1):
-		CTX.field("VBAH.isSelected").value = True
-	else:
-		CTX.field("VBAH.isSelected").value = False
-	#####
-else:
-	if old_hypo_boolean_present:
-		del(old_hypo_array)
-	old_hypo_boolean_present = False
-	print "No existing hypoplastic specifications for this individual, yet."
-
-*"
+	print "No existing type specifications for this individual, yet."*"
     finalizeCode = ""
     showFields = FALSE
     showInitCode = TRUE
@@ -646,7 +437,7 @@ else:
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "-163 613 152 72"
+    frame = "-19 473 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -689,7 +480,7 @@ module SoView2DMenuItem {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "-163 693 152 72"
+    frame = "-19 553 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -732,7 +523,7 @@ module SoView2DMenuItem {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "-163 773 152 72"
+    frame = "-19 633 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -775,7 +566,7 @@ module SoView2DMenuItem {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "5 693 152 72"
+    frame = "149 553 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -818,7 +609,7 @@ module SoView2DMenuItem {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "5 773 152 72"
+    frame = "149 633 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -861,7 +652,7 @@ module SoView2DMenuItem {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "173 613 152 72"
+    frame = "317 473 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -909,7 +700,7 @@ module SoView2DMenuItem {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "173 693 152 72"
+    frame = "317 553 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -952,7 +743,7 @@ module SoView2DMenuItem {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "173 773 152 72"
+    frame = "317 633 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -995,7 +786,7 @@ module SoView2DMenuItem {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "341 693 152 72"
+    frame = "485 553 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1038,7 +829,7 @@ module SoView2DMenuItem {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "341 773 152 72"
+    frame = "485 633 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1081,7 +872,7 @@ module SoView2DMenuItem {
 }
 module itkImageFileReader {
   internal  {
-    frame = "305 277 144 56"
+    frame = "489 277 144 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1160,11 +951,11 @@ xyzt_units :
 }
 module SoGroup {
   internal  {
-    frame = "297 453 432 56"
+    frame = "481 373 432 56"
     moduleGroupName = ""
     windows  {
       window _viewer {
-        geometry = "759 421 400 400"
+        geometry = "1741 123 400 400"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -1176,12 +967,12 @@ module SoGroup {
 }
 module SoViewportRegion {
   internal  {
-    frame = "461 357 136 56"
+    frame = "641 277 144 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "20 471 801 506"
-        sizeHint = "774 476"
+        geometry = "925 231 784 387"
+        sizeHint = "757 357"
         wasOpen = no
       }
     }
@@ -1217,7 +1008,7 @@ module SoViewportRegion {
 }
 module SoView2DMenu {
   internal  {
-    frame = "705 709 128 56"
+    frame = "849 565 128 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1279,11 +1070,11 @@ module SoView2DMenu {
 }
 module View2D {
   internal  {
-    frame = "461 149 120 56"
+    frame = "661 165 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "2453 227 976 725"
+        geometry = "2523 173 864 714"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -1299,7 +1090,7 @@ module View2D {
     inventorInputOn = TRUE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = 105
+    startSlice = 125
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -1324,8 +1115,8 @@ module View2D {
     sliceOrigin = "0 0"
     useShaders = TRUE
     useManagedInteraction = FALSE
-    lutCenter = 365.988586425781
-    lutWidth = 785.055053710938
+    lutCenter = 563.6796875
+    lutWidth = 789
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -1346,7 +1137,7 @@ module View2D {
 }
 module SoView2D {
   internal  {
-    frame = "849 669 96 56"
+    frame = "989 525 104 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1428,7 +1219,7 @@ module SoView2D {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "517 693 152 72"
+    frame = "661 553 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1471,7 +1262,7 @@ module SoView2DMenuItem {
 }
 module ConstantImage {
   internal  {
-    frame = "845 781 120 56"
+    frame = "989 637 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1496,7 +1287,7 @@ module ConstantImage {
 }
 module SoView2DMenuItem {
   internal  {
-    frame = "517 773 152 72"
+    frame = "661 633 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1539,11 +1330,11 @@ module SoView2DMenuItem {
 }
 module View3D {
   internal  {
-    frame = "297 149 144 56"
+    frame = "505 165 144 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1921 72 1151 731"
+        geometry = "1920 111 1216 674"
         sizeHint = "1046 664"
         wasOpen = no
       }
@@ -1568,17 +1359,17 @@ module View3D {
     orientationLocation = LOWER_RIGHT
     orientationOn = TRUE
     orientationModel = CUBE
-    greyCenter = 0.23500058054924
-    greyWidth = 0.129999920725822
+    greyCenter = 0.305001735687256
+    greyWidth = 0.219999939203262
     alphaFactor = 1
     colorFactor = "1 1 1"
     camType = TRUE
-    camPosition = "-34.6274070739746 50.5471267700195 43.8625602722168"
-    camOrientation = "0.180011808872223 -0.238286733627319 -0.954366326332092 2.75881385803223"
+    camPosition = "1.4905766248703 92.2997741699219 12.1573638916016"
+    camOrientation = "-0.00960577093064785 0.523575365543365 0.851925194263458 3.07732605934143"
     initialCameraOrientation = CAMERA_KEEP_AS_IS
-    camFar = 191.0706
-    camNear = 0.19068885
-    camFocal = 82.623337
+    camFar = 197.10126
+    camNear = 0.19670746
+    camFocal = 81.203979
     camHeight = 0.78539801
     decoration = FALSE
     hiResRendering = TRUE
@@ -1658,11 +1449,11 @@ module View3D {
 }
 module MeasureVesselDiameter {
   internal  {
-    frame = "505 237 176 56"
+    frame = "785 229 176 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "3430 300 410 592"
+        geometry = "3426 437 410 592"
         sizeHint = "410 592"
         wasOpen = yes
       }
@@ -1678,762 +1469,15 @@ module MeasureVesselDiameter {
     intensity_profile_num_points = 1000
   }
 }
-module SoView2D {
-  internal  {
-    frame = "1973 669 104 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "148 297 463 518"
-        sizeHint = "463 518"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoView2D2
-    interactionProviderID = ""
-    viewerId = viewer
-    startSlice = 0
-    sliceStep = 1
-    numSlices = 1
-    numXSlices = 1
-    maxSlice = 0
-    keepSlicesInView = FALSE
-    slab = 1
-    lowerLeft = "0 0"
-    upperRight = "1 1"
-    margin = "2 2"
-    spacing = "4 4"
-    sliceZoom = 1
-    sliceZoomSynchronized = 1
-    zoomCenter = "0.5 0.5"
-    minSliceZoomKeyboard = 1
-    sliceOrigin = "0 0"
-    viewingCenter = "0 0 0"
-    enableViewingCenter = FALSE
-    unzoomOnImageChange = FALSE
-    drawImageData = FALSE
-    timePoint = 0
-    maxTimePoint = 0
-    snapToCenter = FALSE
-    standardKeys = TRUE
-    standardKeysNumbers = TRUE
-    standardKeysNeedValidPosition = FALSE
-    passHandledFlagToInventor = FALSE
-    reverseExtensionDrawingOrder = FALSE
-    blendMode = BLEND_REPLACE
-    filterMode = FILTER_LINEAR
-    cacheMode = SLICE_CACHING_OFF
-    sliceAlignX = SLICE_ALIGNX_CENTER
-    sliceAlignY = SLICE_ALIGNY_CENTER
-    useShaders = TRUE
-    applyLut = TRUE
-    lutPrecision = VIEW2D_LUT_AUTO
-    zoomMode = VIEW2D_AUTO_ZOOM
-    zoomModeParameter = 1
-    invertKeyPanningDirections = FALSE
-    invertKeySlicingDirection = FALSE
-    overrideAspectRatio = FALSE
-    overrideAspectRatioValue = 1
-    alphaFactor = 0
-    baseColor = "1 0.933333337306976 0.388235300779343"
-    backgroundAlphaFactor = 0.1
-    backgroundColor = "1 0 1"
-    cineCenterT = 0
-    cineIntervalT = 0
-    cineCenterZ = 0
-    cineIntervalZ = 0
-    cineMode = CINE_Z
-    cineDirection = CINE_PINGPONG
-    cineRepeat = CINE_ONCE
-    cineSpeed = 0.1
-    cineFullRangeZ = TRUE
-    cineFullRangeT = TRUE
-    cineAlwaysReset = TRUE
-    deletingEnabled = TRUE
-    handle2DEvents = TRUE
-    handle3DEvents = TRUE
-    useManagedInteraction = FALSE
-    devicePixelSize = 1
-    enableZBuffer = TRUE
-    enableZWrite = TRUE
-  }
-}
-module ConstantImage {
-  internal  {
-    frame = "1969 781 128 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "739 855 270 341"
-        sizeHint = "248 239"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = ConstantImage1
-    sizeX = 256
-    sizeY = 256
-    sizeZ = 1
-    sizeC = 1
-    sizeT = 1
-    sizeU = 1
-    dataType = "unsigned int8"
-    fillValue = 0
-    autoApply = FALSE
-  }
-}
-module SoGroup {
-  internal  {
-    frame = "929 445 352 56"
-    moduleGroupName = ""
-    windows  {
-      window _viewer {
-        geometry = "759 421 400 400"
-        sizeHint = "400 400"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoGroup1
-  }
-}
-module SoView2DMenu {
-  internal  {
-    frame = "1833 693 128 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "572 479 432 632"
-        sizeHint = "432 632"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoView2DMenu1
-    interactionProviderID = ""
-    drawingOn = TRUE
-    editingOn = TRUE
-    fixZOn = TRUE
-    color = "1 0 1"
-    selectionTolerance = 4
-    needsValidVoxel = FALSE
-    button1 = RELEASED
-    button2 = IGNORED
-    button3 = IGNORED
-    shift = IGNORED
-    control = IGNORED
-    alt = IGNORED
-    wantsAllEvents = FALSE
-    wantsKeyEvents = FALSE
-    wantsMouseWheelEvents = FALSE
-    setEventHandled = FALSE
-    ignoreHandledEvents = FALSE
-    createNewMode = FALSE
-    renderOnSlab = FALSE
-    clipToSlice = FALSE
-    cursorShape = UNDEFINED_CURSOR
-    fontSize = 16
-    layoutType = TOP_DOWN
-    menuType = FIXED_MENU
-    iconBlendMode = IconReplace
-    sensitiveCornerArea = 30
-    borderWidth = 1
-    drawBackground = TRUE
-    radioBox = FALSE
-    suppressHighlighting = FALSE
-    transparency = 0.99999982
-    radius = 10
-    gestureLineColor = "1 0.5686274766922 0.509803950786591"
-    showGestureDirection = TRUE
-    disableZBuffer = FALSE
-    updateActiveStateOnChange = TRUE
-    fixedPosition = "0 0"
-    normalizeMPos = FALSE
-    useFirstItemProps = FALSE
-    popupDelay = 0
-    minGestureMovement = 4
-    setEventHandled = FALSE
-    clearItems = TRUE
-    hold = FALSE
-    hiddenMenuBorder = BORDER_LEFT
-  }
-}
-module SoViewportRegion {
-  internal  {
-    frame = "1041 365 144 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "736 468 774 476"
-        sizeHint = "774 476"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoViewportRegion1
-    on = TRUE
-    modifyVP = TRUE
-    usePreviousVP = FALSE
-    xPositionMode = POSITION_MODE_MAX_AND_SIZE
-    x1 = 0
-    x1ReferenceMode = REFERENCE_MODE_MAX
-    x1DomainMode = DOMAIN_MODE_RELATIVE_TO_WIDTH
-    x2 = 0.2
-    x2ReferenceMode = REFERENCE_MODE_MIN
-    x2DomainMode = DOMAIN_MODE_RELATIVE_TO_MIN
-    yPositionMode = POSITION_MODE_MAX_AND_SIZE
-    y1 = 0
-    y1ReferenceMode = REFERENCE_MODE_MAX
-    y1DomainMode = DOMAIN_MODE_RELATIVE_TO_HEIGHT
-    y2 = 1
-    y2ReferenceMode = REFERENCE_MODE_MAX
-    y2DomainMode = DOMAIN_MODE_RELATIVE_TO_MIN
-    projectionType = ORTHOGRAPHIC
-    renderDelayedPaths = TRUE
-    detectMouseOver = TRUE
-    forwardEvents = TRUE
-    forwardEventsInViewportOnly = TRUE
-    mapEventToViewport = TRUE
-    consumeEventsInViewport = TRUE
-    preset = upperRightMinThird
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1677 685 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = ICARH
-    labelOn = ICA-R-hypoplastic
-    valueOn = ""
-    labelOff = ICA-R-NA
-    valueOff = ""
-    labelOver = ICA-R-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1677 765 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = ICALH
-    labelOn = ICA-L-hypoplastic
-    valueOn = ""
-    labelOff = ICA-L-NA
-    valueOff = ""
-    labelOver = ICA-L-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1517 765 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = MCA1LH
-    labelOn = MCA1-L-hypoplastic
-    valueOn = ""
-    labelOff = MCA1-L-NA
-    valueOff = ""
-    labelOver = MCA1-L-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1517 685 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = MCA1RH
-    labelOn = MCA1-R-hypoplastic
-    valueOn = ""
-    labelOff = MCA1-R-NA
-    valueOff = ""
-    labelOver = MCA1-R-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1365 765 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = ACA1LH
-    labelOn = ACA1-L-hypoplastic
-    valueOn = ""
-    labelOff = ACA1-L-NA
-    valueOff = ""
-    labelOver = ACA1-L-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1365 685 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = ACA1RH
-    labelOn = ACA1-R-hypoplastic
-    valueOn = ""
-    labelOff = ACA1-R-NA
-    valueOff = ""
-    labelOver = ACA1-R-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1365 605 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = AComAH
-    labelOn = AComA-hypoplastic
-    valueOn = ""
-    labelOff = AComA-NA
-    valueOff = ""
-    labelOver = AComA-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1205 765 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = PComALH
-    labelOn = PComA-L-hypoplastic
-    valueOn = ""
-    labelOff = PComA-L-NA
-    valueOff = ""
-    labelOver = PComA-L-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1205 693 152 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = PComARH
-    labelOn = PComA-R-hypoplastic
-    valueOn = ""
-    labelOff = PComA-R-NA
-    valueOff = ""
-    labelOver = PComA-R-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1037 765 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = PCA1LH
-    labelOn = PCA1-L-hypoplastic
-    valueOn = ""
-    labelOff = PCA1-L-NA
-    valueOff = ""
-    labelOver = PCA1-L-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1037 685 152 72"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = PCA1RH
-    labelOn = PCA1-R-hypoplastic
-    valueOn = ""
-    labelOff = PCA1-R-NA
-    valueOff = ""
-    labelOver = PCA1-R-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
-module SoView2DMenuItem {
-  internal  {
-    frame = "1033 621 160 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "799 372 320 499"
-        sizeHint = "320 499"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = VBAH
-    labelOn = VBA-hypoplastic
-    valueOn = ""
-    labelOff = VBA-NA
-    valueOff = ""
-    labelOver = VBA-change
-    valueOver = ""
-    idString = ""
-    color = "1 1 1"
-    backgroundColor = "0.650980412960052 0.635294139385223 0"
-    useBackgroundColorSelected = TRUE
-    backgroundColorSelected = "0.792156875133514 0.517647087574005 0"
-    transparency = 1
-    bkTransparency = 1
-    showItem = TRUE
-    showBackground = TRUE
-    useShadowText = FALSE
-    borderWidth = 3
-    editable = FALSE
-    useAsButton = FALSE
-    sensitive = TRUE
-    alignX = ALIGN_CENTER
-    alignY = ALIGN_Y_CENTER
-    itemPosition = "0.5 0.5"
-    iconOffPath = ""
-    iconOnPath = ""
-    iconOverPath = ""
-    minItemExt = "16 16"
-  }
-}
 connections  {
   SoGroup.children = "ICAL.self ICAR.self MCA1L.self MCA1R.self ACA1L.self ACA1R.self AComA.self PComAL.self PComAR.self PCA1L.self PCA1R.self VBA.self SoView2DMenu.self SoView2D1.self"
   SoViewportRegion.children = SoGroup.self
   View2D.inImage = itkImageFileReader.output0
   View2D.inInvPreLUT = SoViewportRegion.self
   View2D.inInvPostLUT = MeasureVesselDiameter.outNode
-  View2D.inInvPostViewer = SoViewportRegion1.self
   SoView2D1.image = ConstantImage.output0
   View3D.inImage = itkImageFileReader.output0
   View3D.inInvPreLUT = SoViewportRegion.self
-  View3D.inInvPostLUT = SoViewportRegion1.self
   MeasureVesselDiameter.image = itkImageFileReader.output0
-  SoView2D2.image = ConstantImage1.output0
-  SoGroup1.children = "ICALH.self ICARH.self MCA1LH.self MCA1RH.self ACA1LH.self ACA1RH.self AComAH.self PComALH.self PComARH.self PCA1LH.self PCA1RH.self VBAH.self SoView2DMenu1.self SoView2D2.self"
-  SoViewportRegion1.children = SoGroup1.self
 }
 networkModel = ""
