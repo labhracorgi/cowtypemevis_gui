@@ -8,7 +8,9 @@ Intended to be used on:
 ### Motivation for this repository:
 To make available "tools" and code used to manually classify Circle of Willis configurations for a large amount of images. Especially with regards to Horikoshi (2002) and Krabbe-Hartkamp (1998) notation, and another "new" notation of presenting slightly more complex configurations.
 
-## OS it worked/has been tested on:
+## Technical specifications and considerations:
+
+### OS it worked/has been tested on:
 - macOS Sierra
 
 ### Software and version used:
@@ -28,7 +30,8 @@ To make available "tools" and code used to manually classify Circle of Willis co
 Overall project folder with:
 - Code/***GUIscripts***
 - Images/***ID***/tof_mra.nii
-- GUI_other/***csv|cache***/csv_file.csv
+- GUI_other/***csv***/csv_file.csv
+- GUI_other/***cache***/cache_file.csv
 
 ## How to setup:
 1. Start MeVisLab
@@ -37,6 +40,8 @@ Overall project folder with:
 4. To continue to the next image press "Execute" in the RunPythonCode module in the "MAIN" code segment; not "initial" or "wake-up". Continue like this until the program says it is done and an insignificant "error" stops the code.
 5. Collect all intermediate csv files to a larger one by running "pandas_collecter.py".
 6. Translate the results to something more easily manageable (also csv format) by using one of the parsers.
+
+### KULMeasureDiameter.zip:
 
 ### Remarks:
 The GUI might be a little buggy regarding its buttons in the View3D module in MeVisLab. Suspect that the issue arose from zooming, but no workaround has been tempted, yet. The buttons in the View2D should still work. When every image has been typeset, then an error will show that there is no more images. Lastly, the GUI should remember old types (if you haven't deleted the individual csv files) and remember which image you were trying to typeset through the cache. The cache can be manually changed as well as the other csv files. Every image could take between 1-5 minutes to typeset properly.
