@@ -41,7 +41,8 @@ Overall project folder with:
 5. Collect all intermediate csv files to a larger one by running "pandas_collecter.py".
 6. Translate the results to something more easily manageable (also csv format) by using one of the parsers.
 
-### KULMeasureDiameter.zip:
+### KULMeasureVesselDiameter:
+Is a custom standalone package for measuring lumen diameters and it needs to be manually "installed" in MeVisLab. Its (current version?) is written by David Robben at KUL.
 
 ### Remarks:
 The GUI might be a little buggy regarding its buttons in the View3D module in MeVisLab. Suspect that the issue arose from zooming, but no workaround has been tempted, yet. The buttons in the View2D should still work. When every image has been typeset, then an error will show that there is no more images. Lastly, the GUI should remember old types (if you haven't deleted the individual csv files) and remember which image you were trying to typeset through the cache. The cache can be manually changed as well as the other csv files. Every image could take between 1-5 minutes to typeset properly.
