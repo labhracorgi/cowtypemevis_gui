@@ -30,7 +30,14 @@ Overall project folder with:
 - Images/***ID***/tof_mra.nii
 - GUI_other/***csv|cache***/csv_file.csv
 
-## How to setup:
+### Importing a user package:
+1. Unzip the user package to a (new) folder where you want to store MeVisLab user packages. (MeVisLab can load packages in bulk.)
+2. Open MeVisLab, and go to the settings Preferences -> Packages menu.
+3. Select "Add Existing User Packages" button.
+4. Select the unzipped object isolated in a folder.
+5. Restart MeVisLab and CHECK if MeVisLab actually loads the package. It should say something along the lines of "Loading Package (selected name) via User package ..." etc.
+
+## How to setup: (After having imported the user package KULMeasureVesselDiameter.zip)
 1. Start MeVisLab
 2. Open MeVisLab script ("gui_naming_types.mlab") and you will most likely see errors due to missing or non-existing file paths. ***These errors occur since MeVisLab calls "initial" and "wake-up" Python code. So if you don't trust this git and its code, you should just quit now or run it in a safe environment.***
 3. Re-open MeVisLab edited script ("gui_naming_types.mlab") and start to classify images. 
